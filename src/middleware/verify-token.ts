@@ -1,11 +1,11 @@
 import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { UserDTO } from '../models/dto/UserDTO.model';
-import { RequestWithUser } from '../models/request-with-user';
+import { EnrichedRequest } from '../models/requests/enriched-request';
 
 const SECRET_KEY = process.env.JWT_SECRET!;
 
-export const verifyToken = (req: RequestWithUser, res: Response, next: NextFunction) => {
+export const verifyToken = (req: EnrichedRequest, res: Response, next: NextFunction) => {
   const token = req.headers['authorization']?.split(' ')[1];
 
   if (!token) {

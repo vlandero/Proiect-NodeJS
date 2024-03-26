@@ -1,8 +1,8 @@
 import { Table, Column, Model, HasMany } from 'sequelize-typescript';
-import Review from './Review.model';
+import { Review } from './Review.model';
 
 @Table
-export default class Movie extends Model {
+export class Movie extends Model {
   @Column
   title!: string;
 

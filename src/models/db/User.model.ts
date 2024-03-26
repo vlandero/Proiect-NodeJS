@@ -2,7 +2,7 @@ import { Table, Column, Model, BeforeCreate, BeforeUpdate } from 'sequelize-type
 import bcrypt from 'bcrypt';
 
 @Table
-export default class User extends Model {
+export class User extends Model {
   @Column({
     unique: true,
     allowNull: false,

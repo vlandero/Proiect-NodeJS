@@ -1,4 +1,4 @@
-import User from "../models/db/User.model";
+import { User } from "../models/db/User.model";
 import { Request, Response } from 'express';
 
 const UNIQUE_CONSTRAINT_ERROR = 'SequelizeUniqueConstraintError';

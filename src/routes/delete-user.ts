@@ -1,8 +1,8 @@
 import { Response } from 'express';
-import User from '../models/db/User.model';
-import { RequestWithUser } from '../models/request-with-user';
+import { User } from '../models/db/User.model';
+import { EnrichedRequest } from '../models/requests/enriched-request';
 
-export const deleteUser = async (req: RequestWithUser, res: Response) => {
+export const deleteUser = async (req: EnrichedRequest, res: Response) => {
   try {
     const id = req.user?.id;
     const user = await User.destroy({ where: { id } });

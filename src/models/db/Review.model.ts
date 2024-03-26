@@ -1,9 +1,9 @@
 import { Table, Column, Model, ForeignKey, BelongsTo } from 'sequelize-typescript';
-import User from './User.model';
-import Movie from './Movie.model';
+import { User } from './User.model';
+import { Movie } from './Movie.model';
 
 @Table
-export default class Review extends Model {
+export class Review extends Model {
   @Column
   rating!: number;
 

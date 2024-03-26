@@ -1,22 +1,25 @@
 import express from "express";
 import dotenv from "dotenv";
-import sequelize from "./utils/sequelize";
-import User from "./models/db/User.model";
-import Movie from "./models/db/Movie.model";
-import Review from "./models/db/Review.model";
+import { sequelize } from "./utils/sequelize";
+import { User } from "./models/db/User.model";
+import { Movie } from "./models/db/Movie.model";
+import { Review } from "./models/db/Review.model";
 import { login } from "./routes/login";
 import { register } from "./routes/register";
 import { deleteUser } from "./routes/delete-user";
-import { verifyToken } from "./utils/verify-token";
+import { verifyToken } from "./middleware/verify-token";
+import { validateSchema } from "./middleware/validate-schema";
+import { registerSchema } from "./models/zod/register-schema";
+import { loginSchema } from "./models/zod/login-schema";
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 
-app.post('/user/register', register);
+app.post('/user/register', validateSchema(registerSchema), register);
 
-app.post('/user/login', login);
+app.post('/user/login', validateSchema(loginSchema), login);
 
 app.delete('/user/delete', verifyToken, deleteUser);
 
