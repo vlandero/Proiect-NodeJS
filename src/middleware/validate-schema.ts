@@ -10,7 +10,7 @@ export const validateSchema = <T extends z.ZodSchema<any>>(schema: T) => {
     } catch (err: any) {
       return res
         .status(400)
-        .send({ message: "Invalid request body" + err.message });
+        .send({ message: "Invalid request body: " + err.message });
     }
   };
 };

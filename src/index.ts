@@ -7,14 +7,22 @@ import { Review } from "./models/db/Review.model";
 import { login } from "./routes/login";
 import { register } from "./routes/register";
 import { deleteUser } from "./routes/delete-user";
-import { verifyToken } from "./middleware/verify-token";
 import { validateSchema } from "./middleware/validate-schema";
 import { registerSchema } from "./models/zod/register-schema";
 import { loginSchema } from "./models/zod/login-schema";
+import { verifyToken } from "./middleware/verify-token";
+import { isAdmin } from "./middleware/is-admin";
+import { addMovie } from "./routes/add-movie";
+import { movieSchema } from "./models/zod/add-movie-schema";
+import { addReview } from "./routes/add-review";
+import { reviewSchema } from "./models/zod/add-review-schema";
+import { getMovies } from "./routes/get-movies";
+import { getMovie } from "./routes/get-movie";
 
 dotenv.config();
 
 const app = express();
+
 app.use(express.json());
 
 app.post('/user/register', validateSchema(registerSchema), register);
@@ -22,6 +30,14 @@ app.post('/user/register', validateSchema(registerSchema), register);
 app.post('/user/login', validateSchema(loginSchema), login);
 
 app.delete('/user/delete', verifyToken, deleteUser);
+
+app.post('/movie/add', verifyToken, isAdmin, validateSchema(movieSchema), addMovie);
+
+app.get('/movies', getMovies);
+
+app.get('/movie/:id', getMovie);
+
+app.post('/review/add', verifyToken, validateSchema(reviewSchema), addReview)
 
 app.get("/", async (req, res) => {
   res.send("Hello World!");

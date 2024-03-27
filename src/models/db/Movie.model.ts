@@ -7,7 +7,10 @@ export class Movie extends Model {
   title!: string;
 
   @Column
-  description!: string;
+  description?: string;
+
+  @Column
+  coverImage?: string;
 
   @HasMany(() => Review)
   reviews!: Review[];
