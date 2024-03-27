@@ -18,6 +18,11 @@ import { addReview } from "./routes/add-review";
 import { reviewSchema } from "./models/zod/add-review-schema";
 import { getMovies } from "./routes/get-movies";
 import { getMovie } from "./routes/get-movie";
+import { deleteMovie } from "./routes/delete-movie";
+import { deleteReview } from "./routes/delete-review";
+import { updateMovie } from "./routes/update-movie";
+import { updateReview } from "./routes/update-review";
+import { updateReviewSchema } from "./models/zod/update-review-schema";
 
 dotenv.config();
 
@@ -37,7 +42,15 @@ app.get('/movies', getMovies);
 
 app.get('/movie/:id', getMovie);
 
-app.post('/review/add', verifyToken, validateSchema(reviewSchema), addReview)
+app.post('/movie/update/:id', verifyToken, isAdmin, validateSchema(movieSchema), updateMovie);
+
+app.delete('/movie/:id', verifyToken, isAdmin, deleteMovie);
+
+app.post('/review/add', verifyToken, validateSchema(reviewSchema), addReview);
+
+app.post('/review/update/:id', verifyToken, validateSchema(updateReviewSchema), updateReview);
+
+app.delete('/review/:id', verifyToken, isAdmin, deleteReview);
 
 app.get("/", async (req, res) => {
   res.send("Hello World!");

@@ -9,7 +9,7 @@ export const deleteUser = async (req: EnrichedRequest, res: Response) => {
     if (!user) {
       return res.status(404).send({ message: "User not found" });
     }
-    res.send({ message: "User deleted successfully" });
+    res.status(204).send();
   } catch (error) {
     res.status(500).send({ message: "Server error" });
   }
