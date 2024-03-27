@@ -23,6 +23,6 @@ export const login = async (req: Request, res: Response) => {
 
     res.send({ token });
   } catch (error) {
-    res.status(500).send({ message: "Server error" });
+    res.status(400).send({ message: "Server error" });
   }
 };

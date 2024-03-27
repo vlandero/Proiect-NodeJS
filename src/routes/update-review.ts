@@ -24,7 +24,7 @@ export const updateReview = async (req: EnrichedRequest, res: Response) => {
     res.status(200).json(reviewToUpdate);
   } catch (error: any) {
     res
-      .status(500)
+      .status(400)
       .json({ message: "Error updating review", error: error.message });
   }
 };

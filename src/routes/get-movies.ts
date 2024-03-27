@@ -51,7 +51,7 @@ export const getMovies = async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     res
-      .status(500)
+      .status(400)
       .json({ message: "Error fetching movies", error: error.message });
   }
 };

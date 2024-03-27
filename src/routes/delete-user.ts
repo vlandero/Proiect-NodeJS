@@ -11,6 +11,6 @@ export const deleteUser = async (req: EnrichedRequest, res: Response) => {
     }
     res.status(204).send();
   } catch (error) {
-    res.status(500).send({ message: "Server error" });
+    res.status(400).send({ message: "Server error" });
   }
 };

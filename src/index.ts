@@ -23,10 +23,15 @@ import { deleteReview } from "./routes/delete-review";
 import { updateMovie } from "./routes/update-movie";
 import { updateReview } from "./routes/update-review";
 import { updateReviewSchema } from "./models/zod/update-review-schema";
+import multer from "multer";
+import { addMoviePicture } from "./routes/add-movie-picture";
+import { getMoviePicture } from "./routes/get-movie-picture";
 
 dotenv.config();
 
 const app = express();
+
+const upload = multer({ dest: __dirname + '/uploads' });
 
 app.use(express.json());
 
@@ -38,11 +43,15 @@ app.delete('/user/delete', verifyToken, deleteUser);
 
 app.post('/movie/add', verifyToken, isAdmin, validateSchema(movieSchema), addMovie);
 
+app.post('/movie/update/:id', verifyToken, isAdmin, validateSchema(movieSchema), updateMovie);
+
+app.post('/movie/add-picture/:id', verifyToken, isAdmin, upload.single('coverImage'), addMoviePicture);
+
+app.get('/movie/picture/:id', getMoviePicture);
+
 app.get('/movies', getMovies);
 
 app.get('/movie/:id', getMovie);
-
-app.post('/movie/update/:id', verifyToken, isAdmin, validateSchema(movieSchema), updateMovie);
 
 app.delete('/movie/:id', verifyToken, isAdmin, deleteMovie);
 

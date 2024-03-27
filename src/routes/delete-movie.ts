@@ -21,7 +21,7 @@ export const deleteMovie = async (req: Request, res: Response) => {
     res.status(204).send();
   } catch (error: any) {
     res
-      .status(500)
+      .status(400)
       .json({ message: "Error deleting movie", error: error.message });
   }
 };

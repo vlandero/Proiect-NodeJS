@@ -14,6 +14,6 @@ export const register = async (req: Request, res: Response) => {
     if (error.name === UNIQUE_CONSTRAINT_ERROR) {
       return res.status(400).send({ message: "Email already in use." });
     }
-    res.status(500).send({ message: "Failed to register user." });
+    res.status(400).send({ message: "Failed to register user." });
   }
 };

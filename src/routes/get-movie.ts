@@ -10,7 +10,7 @@ export const getMovie = async (req: Request, res: Response) => {
     res.status(200).json(new MovieDTO(movie));
   } catch (error: any) {
     res
-      .status(500)
+      .status(400)
       .json({ message: "Error fetching movie", error: error.message });
   }
 };
