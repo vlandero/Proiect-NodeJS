@@ -44,9 +44,9 @@ app.delete('/user/delete', verifyToken, deleteUser);
 
 app.post('/movie/add', verifyToken, isAdmin, validateSchema(movieSchema), addMovie);
 
-app.post('/movie/update/:id', verifyToken, isAdmin, validateSchema(updateMovieSchema), updateMovie);
+app.put('/movie/:id', verifyToken, isAdmin, validateSchema(updateMovieSchema), updateMovie);
 
-app.post('/movie/add-picture/:id', verifyToken, isAdmin, upload.single('coverImage'), addMoviePicture);
+app.put('/movie/add-picture/:id', verifyToken, isAdmin, upload.single('coverImage'), addMoviePicture);
 
 app.get('/movie/picture/:id', getMoviePicture);
 
@@ -58,7 +58,7 @@ app.delete('/movie/:id', verifyToken, isAdmin, deleteMovie);
 
 app.post('/review/add', verifyToken, validateSchema(reviewSchema), addReview);
 
-app.post('/review/update/:id', verifyToken, validateSchema(updateReviewSchema), updateReview);
+app.put('/review/:id', verifyToken, validateSchema(updateReviewSchema), updateReview);
 
 app.delete('/review/:id', verifyToken, isAdmin, deleteReview);
 

@@ -16,6 +16,7 @@ Primele 4 variabile sunt legate de conexiunea la baza de date, iar ultima este s
 ## Technical details
 - Parolele sunt stocate in baza de date hashuite, cu ajutorul librariei `bcrypt`
 - Se foloseste libraria `zod` pentru validarea modelelor
+- Autentificarea se face prin middleware-ul `verifyToken`, care verifica daca exista un header de Authorization care contine un bearer token si il decodeaza.
 ### Middlewares
 - `verifyToken` - verifica tokenul JWT pus in headerul `authorization`, apoi seteaza in `req.user` userul aferent JWT-ului pentru a il folosi mai departe in API.
 - `isAdmin` - verifica daca `req.user` este admin, pentru a asigura drepturi pentru anumite calluri
@@ -83,3 +84,15 @@ export class UserDTO {
 }
 ```
 `DELETE /movie/:id` - sterge un film dupa id, doar userii admini pot face acest lucru.
+`PUT /movie/:id` - updateaza un film dupa id, doar userii admini au acces. Modelul trimis este acelasi cu modelul trimis pentru a adauga un film
+`PUT /movie/add-picture/:id` - updateaza poza corespunzatoare unui film. Bodyul trebuie sa fie de tip form-data, iar campul in care trebuie adaugata imaginea este `coverImage`
+`POST /review/add` - adauga un review, doar utilizatorii logati pot accesa acest api
+```
+{
+    "rating": 0,
+    "content": "string",
+    "movieId": 0
+}
+```
+`PUT /review/:id` - updateaza un review, doar utilizatorul care a creat review-ul il poate schimba. Modelul trimis este ca cel de la adaugarea review-ului.
+`DELETE /review/:id` - sterge un review, doar adminii pot sterge review-uri
