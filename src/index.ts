@@ -26,6 +26,7 @@ import { updateReviewSchema } from "./models/zod/update-review-schema";
 import multer from "multer";
 import { addMoviePicture } from "./routes/add-movie-picture";
 import { getMoviePicture } from "./routes/get-movie-picture";
+import { updateMovieSchema } from "./models/zod/update-movie-schema";
 
 dotenv.config();
 
@@ -43,7 +44,7 @@ app.delete('/user/delete', verifyToken, deleteUser);
 
 app.post('/movie/add', verifyToken, isAdmin, validateSchema(movieSchema), addMovie);
 
-app.post('/movie/update/:id', verifyToken, isAdmin, validateSchema(movieSchema), updateMovie);
+app.post('/movie/update/:id', verifyToken, isAdmin, validateSchema(updateMovieSchema), updateMovie);
 
 app.post('/movie/add-picture/:id', verifyToken, isAdmin, upload.single('coverImage'), addMoviePicture);
 
