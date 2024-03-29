@@ -74,8 +74,11 @@ export class UserDTO {
 ```
 
 `DELETE /user/delete` - sterge un user. Callul trebuie sa fie facut cu un bearer token (JWT), iar userul sters va fi cel care corespunde JWT-ului.
+
 `GET /movies` - obtine lista cu toate filmele, rezultatul obtinut este de tipul `MovieInListDTO[]`
+
 `GET /movie/:id` - obtine informatii despre un singur film, cu recenziile aferente. Rezultatul este de tipul `MovieDTO`
+
 `POST /movie/add` - adauga un film, doar userii admini pot face acest lucru.
 ```
 {
@@ -84,8 +87,11 @@ export class UserDTO {
 }
 ```
 `DELETE /movie/:id` - sterge un film dupa id, doar userii admini pot face acest lucru.
+
 `PUT /movie/:id` - updateaza un film dupa id, doar userii admini au acces. Modelul trimis este acelasi cu modelul trimis pentru a adauga un film
+
 `PUT /movie/add-picture/:id` - updateaza poza corespunzatoare unui film. Bodyul trebuie sa fie de tip form-data, iar campul in care trebuie adaugata imaginea este `coverImage`
+
 `POST /review/add` - adauga un review, doar utilizatorii logati pot accesa acest api
 ```
 {
@@ -94,6 +100,7 @@ export class UserDTO {
     "movieId": 0
 }
 ```
+
 `PUT /review/:id` - updateaza un review, doar utilizatorul care a creat review-ul il poate schimba. Modelul trimis este ca cel de la adaugarea review-ului.
 
 `DELETE /review/:id` - sterge un review, doar adminii pot sterge review-uri
