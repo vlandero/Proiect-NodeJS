@@ -95,4 +95,5 @@ export class UserDTO {
 }
 ```
 `PUT /review/:id` - updateaza un review, doar utilizatorul care a creat review-ul il poate schimba. Modelul trimis este ca cel de la adaugarea review-ului.
+
 `DELETE /review/:id` - sterge un review, doar adminii pot sterge review-uri
